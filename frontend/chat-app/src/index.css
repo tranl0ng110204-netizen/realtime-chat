@@ -1,0 +1,29 @@
+
+
+/*=======================Sign Up page*================*/
+
+.left-side{
+    display: grid;
+    align-items: center;
+    height: 100vh;
+
+   
+}
+.right-side{
+    border: 5px solid rgb(122, 103, 103);
+    border-radius: 20px;
+    display: grid;
+    padding: 10vh;
+    margin-left: 5vw;
+    background-color: rgb(241, 152, 20);
+}
+.form{
+    border: 5px solid rgb(122, 103, 103);
+    border-radius: 20px;
+    display: grid;
+    padding: 10vh;
+    margin-left: 5vw;
+    background-color: rgb(241, 152, 20);
+    
+   
+}
