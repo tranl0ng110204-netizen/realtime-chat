@@ -1,7 +1,6 @@
 
 
-/*=======================Sign Up page*================*/
-
+/*=======================Sign Up,Login page*================*/
 .left-side{
     display: grid;
     align-items: center;
@@ -26,4 +25,66 @@
     background-color: rgb(241, 152, 20);
     
    
+}
+
+/*====================Profile Page */
+
+.profile{
+    margin-top: 5vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 60vh;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    background-color: rgb(185, 164, 164);
+}
+.profile-pic{
+   
+}
+.profile-info{
+    font-size: 20px;
+}
+
+
+/*================ Home Page ==================*/
+.chat-layout{
+    display: flex;
+    border: 2px solid black;
+    height: 80vh;
+}
+
+.user-chat{
+    border: 2px solid;
+    width: 25%;
+    height: 80vh;
+}
+.chat-form{
+    border: 2px solid;
+    width: 75%;
+    height: 80vh;
+}
+.message-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  resize: vertical;
+  font-size: 14px;
+}
+
+.send-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  float: right;
+}
+
+.send-button:hover {
+  background-color: #40a9ff;
 }

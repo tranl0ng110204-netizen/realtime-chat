@@ -11,7 +11,8 @@ export const useAuth = create((set) =>({
     checkAuth : async() =>{
         try{
             const res = await axiosInstance.get('/user/check')
-            set({userAuth:res.data})
+            console.log('res check auth',res.data)
+            set({authUser:res.data})
         }
         catch(err){
             console.log('Error checking user : ',err)
