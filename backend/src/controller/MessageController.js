@@ -60,7 +60,7 @@ const SendMessage = async(req,res) =>{
     }
     catch(err){
          console.log('loi send Message ',err)
-        return res.status(400).json9(
+        return res.status(400).json(
             {message:"loi send message"}
         )
     }

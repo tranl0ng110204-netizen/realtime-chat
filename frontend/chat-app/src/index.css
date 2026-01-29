@@ -1,3 +1,7 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: cupcake --default
+}
 
 
 /*=======================Sign Up,Login page*================*/
@@ -40,9 +44,7 @@
     border-radius: 20px;
     background-color: rgb(185, 164, 164);
 }
-.profile-pic{
-   
-}
+
 .profile-info{
     font-size: 20px;
 }
@@ -52,7 +54,7 @@
 .chat-layout{
     display: flex;
     border: 2px solid black;
-    height: 80vh;
+    height: 100vh;
 }
 
 .user-chat{

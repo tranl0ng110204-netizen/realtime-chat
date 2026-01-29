@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Row, Col } from 'antd'
 import './UserCard.css'
+import { useChatStore } from '../../store/useChatStore'
 
 const UserCard = ({users}) => {
-    console.log('users',users)
-      if (!users) {
+    const { setSelectedUser,selectedUser} = useChatStore()
+
+    const handleClick = (user) =>{
+      
+        setSelectedUser(user)    
+    }
+    console.log('selectedUser',selectedUser)
+
+
+    if (!users) {
     return <div>Đang tải dữ liệu...</div>
-  }
+    }
 
   // Kiểm tra nếu là mảng rỗng
   if (users.length === 0) {
@@ -16,7 +25,7 @@ const UserCard = ({users}) => {
         return (
             <>
                 {users.map((user,index) =>(
-                    <Row key={user._id || index}  justify='center' className='user-card-container'>
+                    <Row key={user._id || index}  onClick={() => handleClick(user)} justify='center' className='user-card-container'>
                         <Col 
                             xs={24}
                             sm={22}
@@ -26,6 +35,7 @@ const UserCard = ({users}) => {
                             className='user-card'
                         >
                             <div className='card-content'>
+                                <img className='profile-pic' src={user.profilePic} alt="profile-pic" />
                                 {user.fullName}
                             </div>
                         </Col>

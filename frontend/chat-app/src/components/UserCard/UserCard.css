@@ -1,4 +1,8 @@
+
+
+
 .user-card {
+  cursor: pointer;
   background-color: #f5f5f5;
   border-radius: 8px;
   padding: 20px;
@@ -6,4 +10,10 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   word-wrap: break-word;
   overflow-wrap: break-word;
+}.user-card:hover{
+  background-color: rgb(213, 219, 224);
+}
+.profile-pic{
+  border: 2px solid black;
+  
 }
