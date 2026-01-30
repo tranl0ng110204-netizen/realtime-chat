@@ -120,26 +120,34 @@ const LogOut = async(req,res) =>{
 }
 
 const UpdateUser = async(req,res) =>{
+    console.log('image file',req.file)
    try{
-    const {profilePic} = req.body
+    let imageUrl
+    // upload anh sang cloudinary va luu duoi dang Url
+    if(req.file){
+        const base64Image = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
+        const uploadResult = await cloudinary.uploader.upload(base64Image, {
+            folder: "chat-images"
+        })
+
+        imageUrl = uploadResult.secure_url
+
+    }
     const userID = req.user._id
-    if(!profilePic){
-        return res.stauts(400).json({
+    if(!imageUrl){
+        return res.status(400).json({
             message:"khong co profile pic de update"
         })
     }
-    const upload = await cloudinary.uploader.upload(profilePic)
     const UpdateUser = await User.findByIdAndUpdate(
         userID,
         {
-        profilePic:upload.secure_url
+            profilePic:imageUrl
         },
         {
             new:true
         })
-    return res.status(200).json({
-        message:"update profilePic thanh cong"
-    })
+    return res.status(200).json(UpdateUser)
 
    }
    catch(err){

@@ -38,15 +38,21 @@ const GetMessage = async(req,res) =>{
 }
 
 const SendMessage = async(req,res) =>{
+    console.log('file anh',req.file)
     try{
-        const {text,image} = req.body
+        const {text} = req.body
         const {id: receivedID} = req.params
         const userID = req.user._id
         let imageUrl
         // upload anh sang cloudinary va luu duoi dang Url
-        if(image){
-            const upload = await cloudinary.uploader.upload(image)
-            imageUrl = upload.secure_url
+        if(req.file){
+            const base64Image = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
+            const uploadResult = await cloudinary.uploader.upload(base64Image, {
+                folder: "chat-images"
+            })
+
+            imageUrl = uploadResult.secure_url
+
         }
 
         const newMessage = new Message({
