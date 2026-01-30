@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { Row, Col } from 'antd'
 import './UserCard.css'
 import { useChatStore } from '../../store/useChatStore'
 
 const UserCard = ({users}) => {
-    const { setSelectedUser,selectedUser} = useChatStore()
+    const { setSelectedUser,getMessages,selectedUser} = useChatStore()
 
-    const handleClick = (user) =>{
-      
-        setSelectedUser(user)    
+    const handleClick = async(user) =>{
+        setSelectedUser(user)
+        await getMessages(user._id)
     }
-    console.log('selectedUser',selectedUser)
 
 
     if (!users) {
@@ -25,7 +24,7 @@ const UserCard = ({users}) => {
         return (
             <>
                 {users.map((user,index) =>(
-                    <Row key={user._id || index}  onClick={() => handleClick(user)} justify='center' className='user-card-container'>
+                    <Row key={index}  onClick={() => handleClick(user)} justify='center' className='user-card-container'>
                         <Col 
                             xs={24}
                             sm={22}

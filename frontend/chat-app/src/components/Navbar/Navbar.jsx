@@ -2,17 +2,28 @@ import { Col, Row } from 'antd';
 import React from 'react';
 import { DownOutlined, SmileOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
-import {Navigate} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import {useAuth} from '../../store/useAuth'
+
+
 import './Navbar.css'
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const {authUser,logOut} = useAuth()
-  
+
 
   const onClick = ({ key }) => {
    switch(key){
-    case '4' : 
+    case '1':
+      navigate('/')
+      break
+
+
+    case '2':
+      navigate('/profile')
+      break
+    case '3' : 
       logOut()
       break
     default:
@@ -24,35 +35,19 @@ const Navbar = () => {
   const items = [
     {
       key: '1',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          
-        </a>
-      ),
+      label:'Home Page' 
     },
-    {
-      key: '2',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-          2nd menu item (disabled)
-        </a>
-      ),
-      icon: <SmileOutlined />,
+  {
+      key:'2',
+      label: 'Profile Page',
     },
     {
       key: '3',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-          3rd menu item (disabled)
-        </a>
-      ),
-    },
-    {
-      key: '4',
       danger: true,
       label: 'Log Out'
     
     },
+    
   ];
 
   console.log('authUser ',authUser)

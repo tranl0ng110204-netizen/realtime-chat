@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 60vh;
+    height: 50vh;
     border: 5px solid rgb(255, 255, 255);
     border-radius: 20px;
     background-color: rgb(185, 164, 164);
@@ -48,6 +48,32 @@
 .profile-info{
     font-size: 20px;
 }
+
+.upload-profile-image{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.preview-user-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+.update-image{
+    border-radius: 5px;
+}
+
+.update-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
 
 
 /*================ Home Page ==================*/

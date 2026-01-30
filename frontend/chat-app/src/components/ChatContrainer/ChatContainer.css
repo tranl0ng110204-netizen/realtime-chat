@@ -29,6 +29,7 @@
 }
 
 .chat-box{
+    margin-top: 2vh;
     height: 80%;
     overflow-y: auto;
     padding-right: 12px;
@@ -42,3 +43,27 @@
     align-items: center;
     gap: 2vw;
 }
+
+.user-side{
+    display: flex;
+    float: right;
+
+    margin-right: 5vw;
+}
+
+.message-send{
+    border: 2px solid rgb(177, 183, 141);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    background-color: beige;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 2vh 0;
+    padding: 1vh;
+}
+
+.image-send{
+    height: 20vh;
+}
+

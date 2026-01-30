@@ -34,7 +34,6 @@ const MessageInput = () => {
         setImageFile(file.originFileObj)
     }
 
-    console.log('imgfile',imageFile)
   
 
 
@@ -47,7 +46,6 @@ const MessageInput = () => {
                 image:imageFile
 
             })
-
             setText('')
             setImagePreview('')
             setImageFile('')
@@ -89,7 +87,7 @@ const MessageInput = () => {
                 <SendOutlined />
             </Button>
         </div>
-        <div className='send-img'>
+        <div >
         <Upload
              maxCount={1}
             fileList={fileList}
@@ -98,7 +96,7 @@ const MessageInput = () => {
             onChange={handleChange}
             accept="image/*"
             >
-            <Button>
+            <Button className='send-img'>
                 <PictureOutlined />
             </Button>
         </Upload>

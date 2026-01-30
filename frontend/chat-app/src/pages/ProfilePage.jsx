@@ -1,17 +1,41 @@
 import React from 'react'
-import { Col, Row } from 'antd';
-import { Avatar, Badge, Button, Space, Switch } from 'antd';
+import { SendOutlined,PictureOutlined,CloseOutlined } from '@ant-design/icons';
+import { Col, Row ,Upload, Image,Button  } from 'antd';
+import { getBase64 } from '../lib/getBase64';
 import { useState } from 'react';
-const ProfilePage = () => {
+import {useAuth} from "../store/useAuth"
 
-  const [show, setShow] = useState(true);
-  let badge
-  if(show === true){
-    badge = "success"
+const ProfilePage = () => {
+  const {authUser,updateProfile} = useAuth()
+  
+  const [imagePreview,setImagePreview] = useState('')
+  const [imageFile, setImageFile] = useState(null)
+  const [fileList, setFileList] = useState([])
+
+  const handleChange = async (info) => {
+      const file = info.fileList[0]
+
+      console.log('fileList:', info.fileList)
+
+      if (!file || !file.originFileObj) {
+          console.log('NO originFileObj')
+          return
+      }
+
+      const preview = await getBase64(file.originFileObj)
+
+      setImagePreview(preview)
+      setImageFile(file.originFileObj)
   }
-  else if(show === false){
-    badge = "default"
+
+  const handleUpdateUser = async() =>{
+    await updateProfile({
+      image:imageFile
+    })
+    setImagePreview('')
+    setImageFile('')
   }
+
 
   return (
      <>
@@ -23,14 +47,52 @@ const ProfilePage = () => {
         xl={10}
         className='profile'>
         <div className='profile-pic'>
-          <Badge  status={badge} dot={show}>
-           <img src="" alt="profile-pic" />
-          </Badge>
+          {authUser && authUser.profilePic ? 
+          (<div>
+            <Image width={200}
+                height={205}  src={authUser.profilePic} alt='user Pic'/>
+          </div>) : (<div>
+            {imagePreview && (
+            <div className="preview-user-image">
+            <Image
+              className='update-image'
+                src={imagePreview}
+                width={200}
+                height={205}
+            />
+            
+
+
+          </div>)}
+            
+            
+            </div>
+      )}
+
         </div>  
+        <div className='upload-profile-image'>
+             <Upload
+              maxCount={1}
+              fileList={fileList}
+              showUploadList={false}
+              beforeUpload={() => false}
+              onChange={handleChange}
+              accept="image/*"
+              >
+                <Button>
+                  Select Image
+                </Button>
+            </Upload>
+        </div>
         <div className='profile-info'>
-          <p>Name : <span>Long</span></p>
-          <p>Email : <span>abc@gmail.com</span></p>
-          <p>isActive : <span>{show ? 'Active' : "No active"}</span></p>
+          <p>Name : <span>{authUser.fullName}</span></p>
+          <p>Email : <span>{authUser.email}</span></p>
+
+        </div>
+
+
+        <div className='update-btn'>
+          <Button onClick={handleUpdateUser}>Update</Button>
         </div>
    
         

@@ -4,10 +4,13 @@ import { CloseOutlined } from '@ant-design/icons';
 import MessageInput from '../MessageInput/MessageInput';
 import './ChatContainer.css'
 import { useEffect } from 'react'
+import { message } from 'antd';
 const ChatContainer = () => {
-    const {messages,getMessages,isMessagesLoading,selectedUser} = useChatStore()
-    if(isMessagesLoading && selectedUser) return (<div>Message Loading ...</div>)
-    
+
+  const {messages,isMessagesLoading,selectedUser,getMessages} = useChatStore()
+  if(isMessagesLoading && selectedUser) return (<div>Message Loading ...</div>)
+  console.log('messages : ' ,messages.length)
+
   return (
     <>
         <div className='chat-header'>
@@ -19,13 +22,40 @@ const ChatContainer = () => {
              </div>
               
               
-            ) : <p>No pic</p>}
+            ) : <p>No info</p>}
           </div>
           <div className='exit-chat'>
               <CloseOutlined />
           </div>
         </div>
         <div className='chat-box'>
+          <div className='sender-side'>
+
+          </div>
+          <div className='user-side'>
+            {messages && messages.length >0 ? (
+            <div >
+              {messages.map((message) =>(
+                <div className='message-send' key={message._id}>
+                  {
+                    message.text && (
+                      <p>{message.text}</p>
+                    )
+                  
+                  }
+                  {
+                    message.image && (
+                      <img className='image-send' src={message.image}></img>
+                    )
+                  }
+                </div>
+              ))}
+            </div>
+           ):(<div>
+            <p>No message has found</p>
+           </div>)}
+          </div>
+           
           
         </div>
         <div className='chat-input'>

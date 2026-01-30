@@ -27,7 +27,7 @@ export const useChatStore = create((set,get) =>({
         set({isMessagesLoading:true})
         try{
             const res = await axiosInstance.get(`/message/${userID}`)
-            set({messages:res.data})
+            set({messages:res.data.message})
         }
         catch(error){
             toast.error(error.response.data.message)
@@ -37,14 +37,28 @@ export const useChatStore = create((set,get) =>({
         }
     },
     sendMessage:async(messageData) =>{
-        const {selectedUser,messages}  = get()
+        const {selectedUser}  = get()
+        const formData = new FormData()
+        formData.append('text',messageData.text)
+        formData.append('image',messageData.image)
         try{
-            const res = axiosInstance.post(`/message/send/${selectedUser._id}`,messageData)
-            set({messages:[...messages,res.data]})
+        const res = await axiosInstance.post(`/message/send/${selectedUser._id}`,formData,
+            {
+                headers:{
+                    'Content-Type':"multipart/form-data"
+                }
+            }
+        )
+        set((state) =>({
+            messages:[...state.messages,res.data]
+        }))
+        
         }
         catch(err){
 
         }
+        
+        
     },
     setSelectedUser:(selectedUser) =>{
         set({selectedUser})

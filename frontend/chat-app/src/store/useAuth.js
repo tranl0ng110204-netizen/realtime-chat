@@ -55,6 +55,21 @@ export const useAuth = create((set) =>({
             console.log('error when logging out : ',err)
         }
        
+    },
+    updateProfile: async(userData) =>{
+        const formData = new FormData()
+        formData.append('image',userData.image)
+        try{
+            const res = await axiosInstance.put('/user/update',userData,{
+                headers:{
+                    'Content-Type' : "multipart/form-data"
+                }
+            })
+            set({authUser:res.data})
+        }
+        catch(err){
+            console.log('error update image',err)
+        }
     }
 }))
 
