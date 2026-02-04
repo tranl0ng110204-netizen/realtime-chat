@@ -14,7 +14,7 @@ const HomePage = () => {
   return (
     <div className='chat-layout'>
       <div className='user-chat'>
-        <UserCard  users={users.filterUsers} />
+        <UserCard users={users.filterUsers} />
       </div>
       
       <div className='chat-form'>

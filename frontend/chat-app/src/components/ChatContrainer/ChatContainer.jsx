@@ -4,12 +4,33 @@ import { CloseOutlined } from '@ant-design/icons';
 import MessageInput from '../MessageInput/MessageInput';
 import {useAuth} from '../../store/useAuth'
 import './ChatContainer.css'
-import { useEffect } from 'react'
+import { useEffect,useRef } from 'react'
 import { message } from 'antd';
+
 const ChatContainer = () => {
 
-  const {messages,isMessagesLoading,selectedUser,getMessages} = useChatStore()
+  const {messages,isMessagesLoading,selectedUser,getMessages,ListenMessage,UnlistenMessage} = useChatStore()
   const {authUser} = useAuth()
+  const messageEndRef = useRef(null)
+  useEffect(() =>{
+    if(selectedUser){
+      getMessages(selectedUser._id)
+      ListenMessage()
+    }      
+    
+    return () => UnlistenMessage()
+  },[selectedUser,getMessages,ListenMessage,UnlistenMessage])
+
+  useEffect(() =>{
+    if(messageEndRef.current && messages){
+       messageEndRef.current.scrollIntoView({behavior:"smooth"})
+    }
+  },[messages])
+
+ 
+
+ 
+
   if(isMessagesLoading && selectedUser) return (<div>Message Loading ...</div>)
   
   return (
@@ -21,8 +42,6 @@ const ChatContainer = () => {
         
                 <p>{selectedUser.fullName}</p>
              </div>
-              
-              
             ) : <p>No info</p>}
           </div>
           <div className='exit-chat'>
@@ -34,7 +53,7 @@ const ChatContainer = () => {
             {messages && messages.length >0 ? (
             <div >
               {messages.map((message,index) =>(
-                <div className='message-send' key={index}>
+                <div className='message-send' key={message._id} ref={messageEndRef}>
                   {
                     authUser._id === message.senderID ? (
                       <div className='user-side'>

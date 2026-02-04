@@ -52,7 +52,7 @@ const MessageInput = () => {
             if (fileInputRef.current) {
                 fileInputRef.current.value = ''
             }
-            await getMessages(selectedUser._id)
+          
         }
         catch(err){
             console.log('error :',err)

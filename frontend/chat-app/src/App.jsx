@@ -11,11 +11,12 @@ import { useEffect } from 'react'
 import {Navigate} from 'react-router-dom'
 
 function App() {
-  const {authUser,checkAuth } = useAuth()
+  const {authUser,checkAuth,onlineUsers } = useAuth()
   useEffect(() =>{
     checkAuth()
   },[checkAuth])
 
+  console.log('onlineUsers', onlineUsers)
   
 
 

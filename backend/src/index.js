@@ -4,12 +4,10 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const cookieParser = require("cookie-parser")
 const cors = require('cors')
+const {app,server} = require('./lib/socket')
 dotenv.config()
 
 
-
-
-const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
@@ -17,7 +15,7 @@ app.use(cors({origin:'http://localhost:5000',credentials:true}))
 
 AppRouter(app)
 
-app.listen(process.env.PORT,() =>{
+server.listen(process.env.PORT,() =>{
     console.log("server run port:",process.env.PORT)
 })
 

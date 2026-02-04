@@ -5,7 +5,7 @@ import './UserCard.css'
 import { useChatStore } from '../../store/useChatStore'
 
 const UserCard = ({users}) => {
-    const { setSelectedUser,getMessages,selectedUser} = useChatStore()
+    const { setSelectedUser,getMessages,selectedUser,ListenMessage,UnlistenMessage} = useChatStore()
 
     const handleClick = async(user) =>{
         setSelectedUser(user)

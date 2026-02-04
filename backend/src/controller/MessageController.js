@@ -1,6 +1,8 @@
 const Message = require("../model/MessageModel")
 const User = require("../model/UserModel")
 const cloudinary = require('../lib/cloudinary')
+const { getReceiveSocketID,io } = require('../lib/socket')
+
 
 const GetUsersSideBar = async(req,res) =>{
     try{
@@ -38,7 +40,6 @@ const GetMessage = async(req,res) =>{
 }
 
 const SendMessage = async(req,res) =>{
-    console.log('file anh',req.file)
     try{
         const {text} = req.body
         const {id: receivedID} = req.params
@@ -56,13 +57,20 @@ const SendMessage = async(req,res) =>{
         }
 
         const newMessage = new Message({
-            senderID:userID,
-            receivedID:receivedID,
+            senderID:userID.toString(),
+            receivedID:receivedID.toString(),
             text:text,
             image:imageUrl
         })
         await newMessage.save()
-        return res.status(200).json({newMessage})
+
+        const receiverSocketID = getReceiveSocketID(receivedID)
+        if(receiverSocketID){
+            io.to(receiverSocketID).emit('newMessage',newMessage)
+        }
+     
+
+        return res.status(200).json(newMessage)
     }
     catch(err){
          console.log('loi send Message ',err)
