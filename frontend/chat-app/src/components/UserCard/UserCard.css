@@ -13,7 +13,10 @@
 }.user-card:hover{
   background-color: rgb(213, 219, 224);
 }
+
 .profile-pic{
+  height: 5vh;
+  width: 4vw;
   border: 2px solid black;
-  
+  border-radius: 5px;
 }

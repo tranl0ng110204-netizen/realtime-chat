@@ -56,9 +56,9 @@ const Navbar = () => {
     
       <div className='navbar-body'>
           <Row>
-            <Col span={6}>col-6</Col>
-            <Col span={6}>col-6</Col>
-            <Col span={6}>col-6</Col>
+            <Col span={6}></Col>
+            <Col span={6}></Col>
+            <Col span={6}></Col>
             <Col span={6}>
             {authUser ? 
               (
@@ -76,7 +76,6 @@ const Navbar = () => {
               )  
             }
               
-            
             </Col>
         </Row>
 

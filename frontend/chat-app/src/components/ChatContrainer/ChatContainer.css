@@ -45,22 +45,40 @@
 }
 
 .user-side{
-    display: flex;
-    float: right;
-
-    margin-right: 5vw;
-}
-
-.message-send{
     border: 2px solid rgb(177, 183, 141);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-
     background-color: beige;
     border-radius: 5px;
-    justify-content: center;
-    align-items: center;
-    margin: 2vh 0;
+    display: flex;
+    float: right;
+    justify-content: start;
     padding: 1vh;
+    width: 10vw;
+    margin-left: 50vw;
+
+ 
+}
+.sender-side{
+    border: 2px solid rgb(177, 183, 141);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: beige;
+    border-radius: 5px;
+    display:flex;
+    float: left;
+    justify-content: end;
+    width: 10vw;
+    padding: 1vh;
+    width: 10vw;
+    margin-right: 50vw;
+}
+
+
+.message-send{
+   display: grid;
+   justify-content: center;
+   margin-bottom: 2vh;
+
+    
 }
 
 .image-send{

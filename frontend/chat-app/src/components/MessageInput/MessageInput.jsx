@@ -12,7 +12,7 @@ const MessageInput = () => {
     const [fileList, setFileList] = useState([])
 
     const fileInputRef = useRef(null)
-    const {sendMessage} = useChatStore()
+    const {sendMessage,getMessages,selectedUser} = useChatStore()
 
     const MessagePreview = (e) =>{
         setText(e)
@@ -52,6 +52,7 @@ const MessageInput = () => {
             if (fileInputRef.current) {
                 fileInputRef.current.value = ''
             }
+            await getMessages(selectedUser._id)
         }
         catch(err){
             console.log('error :',err)
