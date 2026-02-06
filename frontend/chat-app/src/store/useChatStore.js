@@ -70,6 +70,7 @@ export const useChatStore = create((set,get) =>({
         if(!socket) return
 
         const handler = (newMessage) =>{
+            if(newMessage.senderID !== selectedUser._id) return 
             set((state) => ({
                 messages : [...state.messages,newMessage]
             }))

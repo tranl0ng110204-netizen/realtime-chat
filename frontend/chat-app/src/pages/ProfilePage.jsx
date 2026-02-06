@@ -79,7 +79,7 @@ const ProfilePage = () => {
               onChange={handleChange}
               accept="image/*"
               >
-                <Button>
+                <Button className='upload-btn'>
                   Select Image
                 </Button>
             </Upload>
